@@ -1,0 +1,70 @@
+/* 
+    Document   : test
+    Created on : 2014-10-8, 3:34:33
+    Author     : LFeng
+    Description:
+        Purpose of the stylesheet follows.
+*/
+body {margin: 0px 0px 0px 0px;padding: 0px 0px 0px 0px;font-family: verdana, arial, helvetica, sans-serif;background-color: #293140;height: 100%;overflow: hidden;}
+/* weird ie5win bug: all line-height to font-size ratios must agree or box gets pushed around. UPDATE: this has turned out to be very rare. my current recommendation is IGNORE this warning. at the moment i'm leaving it in only in case the issue turns up again. possibly the original bug in march 2001 was caused by an unusual combination of factors, although this solved it at the time.*/
+#top {clear: both;margin: 0px;padding: 0px;height: 80px;}
+/*html>body #top {
+    height: 42px;  ie5win fudge ends 
+}*/
+#left {position: absolute;top: 80px;margin: 0px 10px;padding: 0px;width: 220px;overflow-y: auto;float: right;}
+/*html>body #left {
+    width: 210px;  ie5win fudge ends 
+}*/
+#right {top: 80px;margin: 0px 20px 0px 260px;text-align: center;}
+
+#logo {float: left;margin-left: 30px;height: 80px;line-height: 80px;}
+#logo h1 {color: #ffffff;text-align: center;font-weight: bold;}
+
+.navbar_info {color: #ffffff;height: 80px;line-height: 80px;float: right;margin-right: 20px;}
+.navbar_info .username {float: left;}
+.navbar_info .username div {float: left;margin: 5px 10px;}
+.navbar_info .loginOut {float: right;}
+
+
+.input_readonly{background: #999};
+.content_hidden{display: none;}
+.page_div{margin: 10px 2%;height: 35px;line-height: 35px;}
+.page_div #page{float: left;}
+/*
+#mapview {
+    height: 100%;
+}
+@media screen and(max-height: 800px) {
+    #right {
+        height: 560px;
+    }
+    #mapview {
+        height: 560px;
+    }
+}
+@media screen and (max-height:900px) {
+    #right {
+        height: 760px;
+    }
+    #mapview {
+        height: 660px;
+    }
+}
+
+@media screen and (min-height:1024px) {
+    #right {
+        height: 780px;
+    }
+    #mapview {
+        height: 780px;
+    }
+}
+
+@media screen and (min-height: 1600px) {
+    #right {
+        height: 1300px;
+    }
+    #mapview {
+        height: 1300px;
+    }
+}*/

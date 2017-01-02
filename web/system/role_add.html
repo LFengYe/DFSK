@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>新增角色</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="../style/detail_style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../style/style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../style/bootstrap.min.css" />
+
+        <script type="text/javascript" src="../javascript/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="../javascript/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../javascript/My97DatePicker/WdatePicker.js"></script>
+        <script type="text/javascript" src="../javascript/script.js"></script>
+        <script type="text/javascript" src="../javascript/projectScript.js"></script>
+        <script type="text/javascript">
+           
+            window.onload = function () {
+                
+            };
+            
+            function checkInput() {
+                if ($.trim($("#username").val()) === "") {
+                    $("#username").focus();
+                    alert("用户名不能为空！");
+                    return false;
+                }
+                if ($.trim($("#password").val()) === "") {
+                    $("#password").focus();
+                    alert("密码不能为空！");
+                    return false;
+                }
+                if ($.trim($("#confirm").val()) === "") {
+                    $("#confirm").focus();
+                    alert("确认密码不能为空！");
+                    return false;
+                }
+                if ($("#confirm").val() !== $("#password").val()) {
+                    alert("两次密码输入不一致！");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </head>
+    <body>
+        <div class="layer_content">
+            <form id="add_form" class="form-horizontal">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2 control-label" for="username">角色编号:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="请输入角色编号" />
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2 control-label" for="password">角色名称:</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="请输入角色名称" />
+                    </div>
+                </div>
+                <div class="form-group-sm form-group">
+                    <div class="col-sm-offset-2 col-sm-9">
+                        <a class="btn btn-default" id="addUserInfo">添加</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

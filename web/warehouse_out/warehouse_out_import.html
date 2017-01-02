@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>成品出库导入</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=9" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <link rel="stylesheet" href="../style/detail_style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../style/style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../style/bootstrap.min.css" type="text/css" media="all" />
+
+        <script type="text/javascript" src="../javascript/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="../javascript/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../javascript/laypage/laypage.js"></script>
+        <script type="text/javascript" src="../javascript/My97DatePicker/WdatePicker.js"></script>
+        <script type="text/javascript" src="../javascript/script.js"></script>
+        <script type="text/javascript" src="../javascript/projectScript.js"></script>
+    </head>
+    <body style="background-color: #e9f0fa;">
+        <div class="titleName"><div class="vline"></div>成品出库导入</div>
+        <div class="myline"></div>
+
+        <div class="function">
+            <span class="left">
+                <a href="javascript:void(0)" id="loadTemplate" style="background-color: rgb(91,192,222)">模板下载</a>
+            </span>
+            <span class="right">
+            </span>
+        </div>
+        <div class="search">
+        </div>
+
+        <div>
+            <form target="hiddenFrame" class="form-horizontal" id="import_form" enctype="multipart/form-data" action="../UploadFile">
+                
+                <div class="form-group-sm form-group">
+                    <label for="fileInput" class="col-sm-2 control-label">上传文件</label>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control" name="fileInput" id="fileInput" />
+                    </div>
+                </div>
+                
+                <div class="form-group-sm form-group">
+                    <div class="col-sm-offset-2 col-sm-9">
+                        <a class="btn btn-default" id="importData">导入</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

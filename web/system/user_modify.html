@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>修改用户</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="../style/detail_style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../style/style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../style/bootstrap.min.css" />
+
+        <script type="text/javascript" src="../javascript/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="../javascript/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../javascript/My97DatePicker/WdatePicker.js"></script>
+        <script type="text/javascript" src="../javascript/script.js"></script>
+        <script type="text/javascript" src="../javascript/projectScript.js"></script>
+        <script type="text/javascript">
+           
+            window.onload = function () {
+                
+            };
+            
+            function checkInput() {
+                if ($.trim($("#username").val()) === "") {
+                    $("#username").focus();
+                    alert("用户名不能为空！");
+                    return false;
+                }
+                if ($.trim($("#password").val()) === "") {
+                    $("#password").focus();
+                    alert("密码不能为空！");
+                    return false;
+                }
+                if ($.trim($("#confirm").val()) === "") {
+                    $("#confirm").focus();
+                    alert("确认密码不能为空！");
+                    return false;
+                }
+                if ($("#confirm").val() !== $("#password").val()) {
+                    alert("两次密码输入不一致！");
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </head>
+    <body>
+        <div class="layer_content" style="padding-top: 50px;">
+            <form id="add_form" class="form-horizontal">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2 control-label" for="username">用户名:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名"
+                               value="test" readonly=""/>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2 control-label" for="username">用户类型:</label>
+                    <div class="col-sm-9">
+                        <input type="hidden" />
+                        <select>
+                            <option value="-1">--请选择--</option>
+                            <option value="1">管理员用户</option>
+                            <option value="2" selected="">岗位用户</option>
+                            <option value="3">普通用户</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2 control-label" for="username">名称:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="请输入用户名称" value="测试用户" />
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2 control-label" for="username">联系方式:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="phoneNum" name="phoneNum" placeholder="请输入联系方式" value="11111111111" />
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2 control-label" for="username">Email:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="email" name="email" placeholder="请输入Email" value="xiaofengcanyue@163.com" />
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2 control-label" for="username">备注:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="remark" name="remark" placeholder="请输入备注" value="备注" />
+                    </div>
+                </div>
+                <div class="form-group-sm form-group">
+                    <div class="col-sm-offset-2 col-sm-9">
+                        <a class="btn btn-default" id="addUserInfo">修改</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

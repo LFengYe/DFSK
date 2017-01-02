@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>角色管理</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=9" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+        <link rel="stylesheet" href="../style/detail_style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../style/style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../style/bootstrap.min.css" type="text/css" media="all" />
+        
+        <script type="text/javascript" src="../javascript/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="../javascript/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../javascript/laypage/laypage.js"></script>
+        <script type="text/javascript" src="../javascript/My97DatePicker/WdatePicker.js"></script>
+        <script type="text/javascript" src="../javascript/script.js"></script>
+        <script type="text/javascript" src="../javascript/projectScript.js"></script>
+        <script type="text/javascript">
+            window.onload = function () {
+                $("#beginTime").bind("click", function () {
+                    new WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate: getMaxDate()});
+                });
+                $("#endTime").bind("click", function () {
+                    new WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate: getMaxDate()});
+                });
+                $("#importData").bind("click", function () {
+                    parent.displayLayer("./system/role_add.html", "新增角色");
+                });
+                $("#search").bind("click", function () {
+                    
+                });
+                $("#reset").bind("click", function () {
+                    document.getElementById("search_form").reset();
+                });
+                
+            };
+            
+            function deleteUser(userId) {
+                if (confirm("确定删除该角色？")) {
+                    
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="function">
+            <span class="left">
+                <a href="javascript:void(0)" id="importData">添加</a>
+            </span>
+            <span class="right">
+                <a href="javascript:void(0)" id="search">搜索</a>
+                <a href="javascript:void(0)" id="reset">重置</a>
+            </span>
+        </div>
+        <div class="search">
+            <form id="search_form" class="form-horizontal" role="form">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="graphName">角色名称：</label>
+                                <input type="text" name="graphName" id="graphName"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label for="beginTime">开始时间：</label>
+                                <input type="text" name="beginTime" id="beginTime"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label for="endTime">结束时间:</label>
+                                <input type="text" name="endTime" id="endTime"/>
+                            </div>
+                            <input type="hidden" name="pageIndex" id="pageIndex" value="1" />
+                            <input type="hidden" name="pageSize" id="pageSize" value="11" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+
+        <div>
+            <div id="message_list">
+                <table class="detail_data">
+                    <tr class='table_header'><td>序号</td><td>角色编号</td><td>角色名称</td><td>角色权限</td><td>操作</td></tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0001</td>
+                        <td>管理员</td>
+                        <td><a>查看</a></td>
+                        <td><a href="javascript:parent.displayLayer('./system/role_modify.html', '角色修改')">修改</a>|
+                            <a href="javascript:deleteUser(0)">删除</a>|
+                            <a href="javascript:parent.displayLayer('./system/role_permission.html', '角色修改')">角色权限管理</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>0002</td>
+                        <td>岗位用户</td>
+                        <td><a>查看</a></td>
+                        <td><a href="javascript:parent.displayLayer('./system/role_modify.html', '角色修改')">修改</a>|
+                            <a href="javascript:deleteUser(0)">删除</a>|
+                            <a href="javascript:parent.displayLayer('./system/role_permission.html', '角色权限管理')">角色权限管理</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>0003</td>
+                        <td>普通用户</td>
+                        <td><a>查看</a></td>
+                        <td><a href="javascript:parent.displayLayer('./system/role_modify.html', '角色修改')">修改</a>|
+                            <a href="javascript:deleteUser(0)">删除</a>|
+                            <a href="javascript:parent.displayLayer('./system/role_permission.html', '角色权限管理')">角色权限管理</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="page_div" class="page_div">
+                <div id="page"></div>
+                <div id="page_info"></div>
+            </div>
+            <div style="clear: both;float: none;"></div>
+        </div>
+    </body>
+</html>

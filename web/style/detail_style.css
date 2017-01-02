@@ -1,0 +1,79 @@
+/* 
+    Document   : detail_style
+    Created on : 2014-9-18, 12:58:34
+    Author     : LFeng
+    Description:
+    Purpose of the stylesheet follows.
+*/
+.titleName{
+    margin-top:20px;
+    text-align:left;
+    color:rgb(91,184,93);
+    padding-left: 16px;
+}
+.titleName span{color: red;font-weight: bold;}
+.myline{
+    margin:5pt 8pt 5pt 8pt;
+    width:98%;
+    height:3px;
+    background-color:rgb(207,207,207);
+}
+.vline{
+    padding-right:5px;
+    margin-right: 10px;
+    display:inline;
+    width:4px;
+    height:10px;
+    background-color:rgb(84,156,255);
+}
+
+/**/
+.function{width: 95%;height: 50px;line-height: 50px;}
+.function .left{float: left;padding-left: 30px;}
+.function  .right{float: right;padding-right: 30px;}
+.function  a{text-decoration: none;padding: 5px;border-radius:3px;color:#fff;background-color: #428bca}
+.function  a:hover{text-decoration:underline;}
+
+.search{height: auto;text-align: left;margin: 0 2%;}
+.search table{width: 96%;margin: 0 30px;}
+.search table label{display: block;}
+.search table select{display: block;}
+.search table tr td select{width: 169px;}
+.input_content{margin: 15px;}
+.input_content div{width: 24%;}
+
+/*普遍内容表格*/
+.detail_data {clear: both;width: 96%;text-align: center;margin: 0 2%;border-collapse: collapse;
+             border-bottom: 2px solid #458dcb;border-right: 2px solid #458dcb;border-left: 2px solid #458dcb;}
+.detail_data tr {font-family: '微软雅黑', 'Times New Roman';}
+.detail_data td {border: 1px solid #458dcb;color: #293140;font-weight: bold;}
+.table_header {background: #a0c5e4;border: 2px solid #458dcb;font-size: 16px;height: 50px;}
+.table_header td a{cursor: pointer;}
+.table_content {background: #ffffff;text-align: center;}
+.table_content td {white-space: nowrap;overflow: hidden;text-overflow: ellipsis;height: 30px;max-width: 150px;}
+.table_content td input{margin: 0px;width: 30px;}
+.table_content td a {cursor: pointer;color: #7dafda;}
+.table_content td span{margin: 0 5px;}
+
+.table_border {font-weight: normal;width: 100%;line-height: normal;font-style: normal;font-variant: normal;}
+
+/*报表表格*/
+.report_table {clear: both;width: 96%;text-align: center;margin: 0 2%;border-collapse: collapse;
+             border-bottom: 2px solid #458dcb;border-right: 2px solid #458dcb;border-left: 2px solid #458dcb;}
+.report_table tr {font-family: '微软雅黑', 'Times New Roman';}
+.report_table td {border: 1px solid #458dcb;color: #293140;font-weight: bold;}
+.report_table tr td a {cursor: pointer;color: #15a4fa;}
+.report_table tr td span{margin: 0 5px;}
+.report_table_header {background: #a0c5e4;border: 2px solid #458dcb;font-size: 16px;height: 50px;}
+.report_table_content {background: #ffffff;text-align: center;color: #264f6f;border-bottom: 1px solid #e4e5e6;height: 30px;}
+.report_table_content tr td input{margin: 0px;width: 30px;}
+
+/*弹出框内容大小*/
+.layer_content{height: 450px;padding: 100px;}
+
+.small{font-size: 14px;}
+.small_font{font-size: 14px;}
+
+
+/**/
+.btn_center{margin: 0 auto;width: 50px;}

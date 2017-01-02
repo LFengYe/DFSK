@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>用户管理</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=9" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <link rel="stylesheet" href="../style/detail_style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../style/style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../style/bootstrap.min.css" type="text/css" media="all" />
+
+        <script type="text/javascript" src="../javascript/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="../javascript/bootstrap.min.js"></script>
+        <script type="text/javascript" src="../javascript/laypage/laypage.js"></script>
+        <script type="text/javascript" src="../javascript/My97DatePicker/WdatePicker.js"></script>
+        <script type="text/javascript" src="../javascript/script.js"></script>
+        <script type="text/javascript" src="../javascript/projectScript.js"></script>
+        <script type="text/javascript">
+            var userTypeStr = ["管理员", "计划员", "经销商"];
+            window.onload = function () {
+                $("#beginTime").bind("click", function () {
+                    new WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate: getMaxDate()});
+                });
+                $("#endTime").bind("click", function () {
+                    new WdatePicker({dateFmt: 'yyyy-MM-dd', maxDate: getMaxDate()});
+                });
+                $("#addData").bind("click", function () {
+                    parent.displayLayer("./system/user_add.html", "添加用户", function(){getUserInfoList("search_form");});
+                });
+                $("#search").bind("click", function () {
+                    getUserInfoList("search_form");
+                });
+                $("#reset").bind("click", function () {
+                    document.getElementById("search_form").reset();
+                });
+                $("#userTypeSelect").bind("change", function (){
+                    var userType = $("#userTypeSelect").val();
+                    $("#userType").val(userType);
+                });
+                getUserInfoList("search_form");
+            };
+
+            function getUserInfoList(formId) {
+                var sendBody = serializeForm(formId);
+                getDataInterface('userInfoGet.do', sendBody, function (result) {
+                    var obj = JSON.parse(result);
+                    if (obj.status === 0) {
+                        var htmlStr = "<table class='detail_data'><tr class='table_header'><td>序号</td><td>用户名</td><td>用户类型</td><td>供应商代码</td><td>联系方式</td><td>备注</td><td>操作</td></tr>";
+                        for (var i = 0; i < obj.data.length; i++) {
+                            htmlStr += "<tr class='table_content'>";
+                            htmlStr += "<td>" + (obj.data[i].userId ? obj.data[i].userId : "") + "</td>";
+                            htmlStr += "<td>" + (obj.data[i].userName ? (obj.data[i].userName) : "") + "</td>";
+                            htmlStr += "<td>" + (userTypeStr[obj.data[i].userType] ? userTypeStr[obj.data[i].userType] : "") + "</td>";
+                            htmlStr += "<td>" + (obj.data[i].carrierCode ? obj.data[i].carrierCode : "") + "</td>";
+                            htmlStr += "<td>" + (obj.data[i].userContact ? obj.data[i].userContact : "") + "</td>";
+                            htmlStr += "<td>" + (obj.data[i].userRemark ? obj.data[i].userRemark : "") + "</td>";
+                            htmlStr += "<td>";
+                            htmlStr += "<a href=''>修改</a><span>|</span>";
+                            htmlStr += "<a href='javascript:deleteUser(" + obj.data[i].userName + ")'>删除</a><span>|</span>";
+                            htmlStr += "<a href='javascript:resetPass(" + obj.data[i].userName + ")'>重置密码</a>";
+                            htmlStr += "</td>";
+                            htmlStr += "</tr>";
+                        }
+                        htmlStr += "</table>";
+                        $("#message_list").html(htmlStr);
+
+                        var recordCount = obj.count;
+                        var pageSize = $("#pageSize").val();
+                        var pageCount = parseInt((recordCount % pageSize === 0) ? (recordCount / pageSize) : (recordCount / pageSize + 1));
+                        layerPage(pageCount);
+                    } else {
+                        var htmlStr = "<table class='detail_data'><tr class='table_header'><td>序号</td><td>用户名</td><td>用户类型</td><td>联系方式</td><td>备注</td><td>操作</td></tr>";
+                        htmlStr += "<td colspan='7'><h3>没有查询到相关数据！</h3></td>";
+                        htmlStr + "<tr></tr></table>";
+                        $("#message_list").html(htmlStr);
+                        layerPage(0);
+                    }
+                });
+            }
+            function layerPage(pageCount) {
+                document.getElementById("page_info").innerHTML = '目前正在第' + $("#pageIndex").val() + '页，一共有' + pageCount + '页';
+                laypage({
+                    cont: "page",
+                    pages: pageCount,
+                    curr: $("#pageIndex").val(),
+                    skip: true,
+                    jump: function (obj, first) {
+                        if (!first) {
+                            $("#pageIndex").val(obj.curr);
+                            getUserInfoList("search_form");
+                        }
+                    }
+                });
+            }
+
+            function deleteUser(userName) {
+                if (confirm("确定删除该用户？")) {
+                }
+            }
+
+            function resetPass(userName) {
+                if (confirm("确定将该用户密码重置为系统默认密码？")) {
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="function">
+            <span class="left">
+                <a href="javascript:void(0)" id="addData">添加</a>
+            </span>
+            <span class="right">
+                <a href="javascript:void(0)" id="search">搜索</a>
+                <a href="javascript:void(0)" id="reset">重置</a>
+            </span>
+        </div>
+
+        <div class="search">
+            <form id="search_form" class="form-horizontal" role="form">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label for="userTypeSelect" class="col-sm-4 control-label">用户类型：</label>
+                                <div class="col-sm-6">
+                                    <input type="hidden" class="form-control" name="userType" id="userType" value="-1"/>
+                                    <select id="userTypeSelect">
+                                        <option value="-1">--请选择--</option>
+                                        <option value="0">管理员</option>
+                                        <option value="1">计划员</option>
+                                        <option value="2">供应商</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <label for="userName" class="col-sm-4 control-label">用户名：</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="userName" id="userName"/>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" name="pageIndex" id="pageIndex" value="1" />
+                <input type="hidden" name="pageSize" id="pageSize" value="11" />
+            </form>
+        </div>
+
+        <div>
+            <div id="message_list">
+                <table class="detail_data">
+                    <tr class='table_header'><td>序号</td><td>用户名</td><td>用户类型</td><td>联系方式</td><td>备注</td><td>操作</td></tr>
+                </table>
+            </div>
+            <div id="page_div" class="page_div">
+                <div id="page"></div>
+                <div id="page_info"></div>
+            </div>
+            <div style="clear: both;float: none;"></div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>角色权限</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="../style/detail_style.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="../style/style.css" type="text/css" media="all" />
+        <!--<link rel="stylesheet" href="../style/bootstrap.min.css" />-->
+        <link rel="stylesheet" href="../style/zTreeStyle/zTreeStyle.css" />
+
+        <script type="text/javascript" src="../javascript/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="../javascript/jquery.ztree.core-3.5.js"></script>
+        <script type="text/javascript" src="../javascript/jquery.ztree.excheck-3.5.js"></script>
+        <!--<script type="text/javascript" src="../javascript/bootstrap.min.js"></script>-->
+        <!--<script type="text/javascript" src="../javascript/My97DatePicker/WdatePicker.js"></script>-->
+        <script type="text/javascript" src="../javascript/script.js"></script>
+        <script type="text/javascript" src="../javascript/projectScript.js"></script>
+        <script type="text/javascript">
+
+            window.onload = function () {
+                var zTreeObj;
+                // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+                var setting = {
+                    check:{
+                        enable: true,
+                        chkStyle: "checkbox"
+                    }
+                };
+                var zNodes = [
+                    {name: "图纸管理", oepn: true},
+                    {name: "岗位定义"},
+                    {name: "流程管理"},
+                    {name: "系统管理", children: [
+                            {name: "用户管理"},
+                            {name: "角色管理"}
+                        ]}
+                ];
+                
+                zTreeObj = $.fn.zTree.init($("#permission"), setting, zNodes);
+            };
+        </script>
+    </head>
+    <body>
+        <div>
+            <div id="permission_div">
+                <div id="permission" class="ztree"></div> 
+            </div>
+        </div>
+    </body>
+</html>

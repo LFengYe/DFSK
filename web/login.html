@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script type="text/javascript" src="javascript/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="javascript/script.js"></script>
+        <script type="text/javascript" src="javascript/projectScript.js"></script>
+        <title>东风小康</title>
+        <style type="text/css">
+            body{margin: 0px;background-repeat: repeat-x;overflow-x:hidden;}
+            a{text-decoration: none;}
+        </style>
+        <script type="text/javascript">
+            function loginSubmit() {
+                if (checkForm()) {
+                    var sendBody = serializeForm("login_form");
+                    getDataInterface("userLogin.do", sendBody, function(result) {
+                        var obj = JSON.parse(result);
+                        if (obj.status === 0) {
+                            location.href = "index.jsp";
+                        } else {
+                            alert(obj.message);
+                        }
+                    });
+                }
+            }
+            function checkForm() {
+                if ($.trim($("#username").val()) === "") {
+                    $("#username").focus();
+                    alert("用户名不能为空！");
+                    return false;
+                }
+                if ($("#password").val() === "") {
+                    $("#password").focus();
+                    alert("密码不能为空！");
+                    return false;
+                }
+                return true;
+            }
+
+            window.onload = function () {
+                $("#btnLogin").bind("click", function () {
+                    loginSubmit();
+                });
+                $("body").bind("keyup", function (event) {
+                    if (event.keyCode === 13) {
+                        loginSubmit();
+                    }
+                });
+            };
+        </script>
+    </head>
+    <body >
+        <form method="post" action="" id="login_form">
+            <div style="height: 100%;width: 100%;" id="tableLogin">
+                <div style="background-image: url(images/page_back.png);background-repeat: no-repeat;background-position: center center;
+                     text-align: center;width: 1440px;height: 798px;position: absolute;left: 50%;margin-left: -720px;" >
+                    <div style="width: 100%;height: 300px;color: #ffffff;font-size: 30px;">
+                        <h1 style="padding-top: 100px;" >东风小康供应商协同平台</h1>
+                    </div>
+                    <div style="width: 100%;height: 53px;">
+                        <div style="width: 500px;height: 53px;line-height: 53px;float: left;"></div>
+                        <div style="width: auto;height: 53px;line-height: 53px;float: left;">
+                            <input type="text" name="username" class="text_login" id="username"
+                                   style="background: url(images/input_back.png) no-repeat;border: 0;padding-left: 10px;width: 186px;height: 29px;line-height: 29px;
+                                   outline: medium; color: #747570;"/>
+                            <input type="password" name="password" class="text_login" id="password"
+                                   style="background: url(images/input_back.png) no-repeat;border: 0;padding-left: 10px;width: 186px;height: 29px;line-height: 29px;
+                                   outline: medium; color: #747570;"/>
+                        </div>
+                        <div style="width: auto;height: 40px; line-height: 40px;padding-top: 12px;float: left;">
+                            <input type="button" name="btnLogin" id="btnLogin" value="" onclick="loginSubmit();"
+                                   style="background: url(images/land_button.png) no-repeat;border: 0;margin: 0;width: 79px;height: 28px;line-height: 28px;cursor: pointer;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>
+

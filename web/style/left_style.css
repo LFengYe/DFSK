@@ -1,0 +1,95 @@
+/* 
+    Document   : left_style
+    Created on : 2014-10-9, 5:17:00
+    Author     : LFeng
+    Description:
+    Purpose of the stylesheet follows.
+*/
+
+/************************/
+.statistical ul {
+    height: 72px;
+    line-height: 72px;
+    text-align: left;
+}
+.statistical li {
+    list-style: none inside none;
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 15px;
+}
+.statistical li a{
+    margin-left: 0px;
+    width: 100%;
+    text-decoration: none;
+}
+
+.selected_item {
+    background-image: url('../images/item_selected_back.png');
+    background-position-x: -10px;
+}
+.selected_item a{
+    color: #15a4fa;
+}
+.other_item {
+    background: none;
+}
+.other_item a{
+    color: #9194a1;
+}
+
+.nav{
+    position:relative;
+    margin:0 auto;
+    height:56px;
+    color:#999;
+    z-index:999;
+}
+.nav ul{
+    list-style-type:none;
+    padding:0px;
+}
+.nav ul li{
+    /*float:left;*/
+    position:relative;
+}
+.nav ul li a{
+    color:#999;
+    text-align:center;
+    text-decoration:none;
+    border-right:1px solid #e9e9e9;
+    padding:20px 10px;
+    display:block;
+    font-size:20px;
+    font-weight: bold;
+}
+.nav ul li a:hover{
+    background: #12aeef repeat-x;
+    color:#fff;
+}
+.nav ul li ul{
+    display:none;
+}
+.nav ul li:hover ul{	
+    display: block;
+    position: absolute;
+    top:0px;
+    min-width:190px;
+    left:220px;
+}
+
+.nav ul li:hover ul li a{
+    display:block;
+    background: #12aeef;
+    font-size:14px;
+    color:#fff;
+    width: 140px;
+    min-width: 120px;
+    border-bottom: 1px solid #f2f2f2;
+    border-right: none;
+}
+
+.nav ul li:hover ul li a:hover {
+    background:#6dc7ec; 
+    color:#ffffff; 
+}
