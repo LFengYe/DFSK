@@ -223,6 +223,7 @@ public class DataInterface extends HttpServlet {
                     break;
                 }
                 case "materialInitGet": {
+                    String carrierName = paramsJson.getString("carrierName");
                     String jianHaoName = paramsJson.getString("jianHaoName");
                     String carModel = paramsJson.getString("carModel");
                     String beginTime = paramsJson.getString("beginTime");
@@ -230,7 +231,7 @@ public class DataInterface extends HttpServlet {
                     int pageSize = paramsJson.getIntValue("pageSize");
                     int pageIndex = paramsJson.getIntValue("pageIndex");
                     MaterialInitController controller = new MaterialInitController();
-                    ArrayList<MaterialInit> result = controller.getData(jianHaoName, jianHaoName, carModel, beginTime, endTime, pageSize, pageIndex);
+                    ArrayList<MaterialInit> result = controller.getData(carrierName, jianHaoName, carModel, beginTime, endTime, pageSize, pageIndex);
                     if (result != null) {
                         json = Units.listToJson(result, BaseInfo.recordCount);
                     } else {
@@ -259,6 +260,7 @@ public class DataInterface extends HttpServlet {
                     break;
                 }
                 case "productInitGet": {
+                    String carrierName = paramsJson.getString("carrierName");
                     String jianHaoName = paramsJson.getString("jianHaoName");
                     String carModel = paramsJson.getString("carModel");
                     String beginTime = paramsJson.getString("beginTime");
@@ -266,7 +268,7 @@ public class DataInterface extends HttpServlet {
                     int pageSize = paramsJson.getIntValue("pageSize");
                     int pageIndex = paramsJson.getIntValue("pageIndex");
                     ProductInitController controller = new ProductInitController();
-                    ArrayList<ProductInit> result = controller.getData(jianHaoName, jianHaoName, carModel, beginTime, endTime, pageSize, pageIndex);
+                    ArrayList<ProductInit> result = controller.getData(carrierName, jianHaoName, carModel, beginTime, endTime, pageSize, pageIndex);
                     if (result != null) {
                         json = Units.listToJson(result, BaseInfo.recordCount);
                     } else {
