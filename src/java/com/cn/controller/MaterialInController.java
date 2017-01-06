@@ -69,7 +69,7 @@ public class MaterialInController {
                 }
             }
             return batchAddMaterial(carrierName, imports);
-            
+
         } catch (FileNotFoundException ex) {
             logger.error("未找到文件", ex);
         } catch (IOException ex) {
@@ -93,6 +93,7 @@ public class MaterialInController {
         opt = new DatabaseOpt();
         try {
             conn = opt.getConnect();
+            conn.setAutoCommit(false);
             statement = conn.prepareCall("insert into tbOrderMaterialIn(materialInID, PinMing, JianHao, CarModel, CarCount, AddTime, Remark, carrierName)"
                     + "values(MATERIALINID.NEXTVAL, ?, ?, ?, ?, TO_DATE(TO_CHAR(SYSDATE, 'yyyy-mm-dd hh24:mi:ss'), 'yyyy-mm-dd hh24:mi:ss'), ?, ?)");
             for (MaterialIn infoImport : imports) {
@@ -105,8 +106,16 @@ public class MaterialInController {
                 statement.addBatch();
             }
             statement.executeBatch();
+            conn.commit();
             return 0;
         } catch (SQLException ex) {
+            try {
+                if (conn != null) {
+                    conn.rollback();
+                }
+            } catch (SQLException ex1) {
+                logger.error("数据库回滚错误", ex1);
+            }
             logger.error("数据库执行错误", ex);
         } finally {
             try {

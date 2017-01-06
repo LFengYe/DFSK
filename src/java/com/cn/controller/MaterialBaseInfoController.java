@@ -82,6 +82,7 @@ public class MaterialBaseInfoController {
             opt = new DatabaseOpt();
             try {
                 conn = opt.getConnect();
+                conn.setAutoCommit(false);
                 statement = conn.prepareCall("insert into tbMaterialBaseInfo(materialBaseId, pinMing, jianHao, carModel, carNum, carrierName, productJianHao)"
                         + "values(MATERIALBASEID.NEXTVAL, ?, ?, ?, ?, ?, ?)");
                 for (MaterialBaseInfo infoImport : imports) {

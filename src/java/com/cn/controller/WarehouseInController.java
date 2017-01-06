@@ -31,6 +31,7 @@ public class WarehouseInController {
         opt = new DatabaseOpt();
         try {
             conn = opt.getConnect();
+            conn.setAutoCommit(false);
             statement = conn.prepareCall("insert into tbOrderWareHouseIn(warehouseInId, PinMing, JianHao, CarCount, AddTime, Remark, carrierName)"
                     + "values(WAREHOUSEINID.NEXTVAL, ?, ?, ?, TO_DATE(TO_CHAR(SYSDATE, 'yyyy-mm-dd hh24:mi:ss'), 'yyyy-mm-dd hh24:mi:ss'), ?, ?)");
             for (ProductWarehouseIn infoImport : imports) {
@@ -42,8 +43,16 @@ public class WarehouseInController {
                 statement.addBatch();
             }
             statement.executeBatch();
+            conn.commit();
             return 0;
         } catch (SQLException ex) {
+            try {
+                if (conn != null) {
+                    conn.rollback();
+                }
+            } catch (SQLException ex1) {
+                logger.error("数据库回滚错误", ex1);
+            }
             logger.error("数据库执行错误", ex);
         } finally {
             try {

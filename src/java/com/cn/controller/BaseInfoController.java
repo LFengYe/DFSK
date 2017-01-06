@@ -39,7 +39,7 @@ public class BaseInfoController {
      * @param fileName
      * @return
      */
-    public int[] importData(String fileName) {
+    public int importData(String fileName) {
         InputStream inputStream = null;
         try {
             File file = new File(fileName);
@@ -78,6 +78,7 @@ public class BaseInfoController {
             opt = new DatabaseOpt();
             try {
                 conn = opt.getConnect();
+                conn.setAutoCommit(false);
                 statement = conn.prepareCall("insert into tbBaseInfo(baseId, pinMing, jianHao, carModel, carNum)"
                         + "values(BASEID.NEXTVAL, ?, ?, ?, ?)");
                 for (BaseInfo infoImport : imports) {
@@ -87,8 +88,16 @@ public class BaseInfoController {
                     statement.setInt(4, infoImport.getCarNum());
                     statement.addBatch();
                 }
-                return statement.executeBatch();
+                statement.executeBatch();
+                conn.commit();
+                return 0;
             } catch (SQLException ex) {
+                try {
+                    if (conn != null)
+                        conn.rollback();
+                } catch (SQLException ex1) {
+                    logger.error("数据库回滚错误", ex1);
+                }
                 logger.error("数据库执行错误", ex);
             } finally {
                 try {
@@ -116,7 +125,7 @@ public class BaseInfoController {
                 logger.error("关闭输入流异常", ex);
             }
         }
-        return null;
+        return -1;
     }
 
     /**

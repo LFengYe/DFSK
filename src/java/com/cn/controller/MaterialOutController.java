@@ -91,6 +91,7 @@ public class MaterialOutController {
         opt = new DatabaseOpt();
         try {
             conn = opt.getConnect();
+            conn.setAutoCommit(false);
             statement = conn.prepareCall("insert into tbOrderMaterialOut(materialOutID, PinMing, JianHao, CarModel, CarCount, AddTime, Remark, carrierName)"
                     + "values(MATERIALOUTID.NEXTVAL, ?, ?, ?, ?, TO_DATE(TO_CHAR(SYSDATE, 'yyyy-mm-dd hh24:mi:ss'), 'yyyy-mm-dd hh24:mi:ss'), ?, ?)");
             for (MaterialOut infoImport : imports) {
@@ -103,8 +104,16 @@ public class MaterialOutController {
                 statement.addBatch();
             }
             statement.executeBatch();
+            conn.commit();
             return 0;
         } catch (SQLException ex) {
+            try {
+                if (conn != null) {
+                    conn.rollback();
+                }
+            } catch (SQLException ex1) {
+                logger.error("数据库回滚错误", ex1);
+            }
             logger.error("数据库执行错误", ex);
         } finally {
             try {

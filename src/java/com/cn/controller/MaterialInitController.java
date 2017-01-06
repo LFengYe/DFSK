@@ -117,6 +117,7 @@ public class MaterialInitController {
         opt = new DatabaseOpt();
         try {
             conn = opt.getConnect();
+            conn.setAutoCommit(false);
             statement = conn.prepareCall("insert into tbMaterialInit(materialInitId, pinMing, jianHao, carModel, initNum, initDate, carrierName)"
                     + "values(MATERIALINITID.NEXTVAL, ?, ?, ?, ?, ?, ?)");
             for (MaterialInit infoImport : imports) {
@@ -129,8 +130,16 @@ public class MaterialInitController {
                 statement.addBatch();
             }
             statement.executeBatch();
+            conn.commit();
             return 0;
         } catch (SQLException ex) {
+            try {
+                if (conn != null) {
+                    conn.rollback();
+                }
+            } catch (SQLException ex1) {
+                logger.error("数据库回滚错误", ex1);
+            }
             logger.error("数据库执行错误", ex);
         } finally {
             try {

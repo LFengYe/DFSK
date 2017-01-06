@@ -113,8 +113,8 @@ public class DataInterface extends HttpServlet {
                     String loadpath = getServletContext().getRealPath("/").replace("\\", "/") + "excelFile/"; //上传文件存放目录
                     String fileName = paramsJson.getString("fileName");
                     BaseInfoController controller = new BaseInfoController();
-                    int[] result = controller.importData(loadpath + fileName);
-                    if (result != null) {
+                    int result = controller.importData(loadpath + fileName);
+                    if (result == 0) {
                         json = Units.jsonStrToJson(0, "导入成功!", null);
                     } else {
                         File file = new File(loadpath + fileName);
@@ -516,8 +516,8 @@ public class DataInterface extends HttpServlet {
                     String loadpath = getServletContext().getRealPath("/").replace("\\", "/") + "excelFile/"; //上传文件存放目录
                     String fileName = paramsJson.getString("fileName");
                     BaseInfoController controller = new BaseInfoController();
-                    int[] result = controller.importData(loadpath + fileName);
-                    if (result != null) {
+                    int result = controller.importData(loadpath + fileName);
+                    if (result == 0) {
                         json = Units.jsonStrToJson(0, "导入成功!", null);
                     } else {
                         File file = new File(loadpath + fileName);
@@ -578,8 +578,8 @@ public class DataInterface extends HttpServlet {
                     String loadpath = getServletContext().getRealPath("/").replace("\\", "/") + "excelFile/"; //上传文件存放目录
                     String fileName = paramsJson.getString("fileName");
                     BaseInfoController controller = new BaseInfoController();
-                    int[] result = controller.importData(loadpath + fileName);
-                    if (result != null) {
+                    int result = controller.importData(loadpath + fileName);
+                    if (result == 0) {
                         json = Units.jsonStrToJson(0, "导入成功!", null);
                     } else {
                         File file = new File(loadpath + fileName);
